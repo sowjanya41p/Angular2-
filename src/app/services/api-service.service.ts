@@ -16,6 +16,10 @@ export class ApiService {
       { headers: this.getHeaders() });
   }
 
+  getQuestionJsonData() {
+    return this.httpClient.get('../assets/questionnaire.json');
+  }
+
   private getHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Content-Type': 'application/fhir+json'

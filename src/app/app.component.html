@@ -1,1 +1,65 @@
-<p>check the console!</p>
+<!-- <p>check the console!</p> -->
+
+<form *ngIf="this.pageForm" [formGroup]="pageForm" class="box border_radius">
+
+    <h2 class="centeralign">Questionaire</h2>
+    <ng-container *ngFor="let controls of this.formFieldColl">
+  <div class="w_100">
+  <div class="w_20">
+      <label>{{controls.linkId}} - {{controls.label}} </label>
+      <hr>
+  </div>
+  <div  class="w_80">
+      <ng-container *ngIf="controls.type == 'group'">
+        <br>
+      </ng-container>
+      <ng-container *ngIf="controls.type !== 'group'" >
+        <ng-container *ngIf="controls.type == 'boolean'">
+          <input [formControlName]="controls.fieldX" type="radio" [name]="controls.fieldX" value="Yes" /> YES
+          <input [formControlName]="controls.fieldX" type="radio" [name]="controls.fieldX" value="No" /> NO
+        </ng-container>
+        <ng-container *ngIf="controls.type == 'date'">
+          <input [formControlName]="controls.fieldX" type="date" [name]="controls.fieldX" />
+        </ng-container>
+  
+        <ng-container *ngIf="controls.type == 'string' && controls.linkId == 2.1">
+          <select [formControlName]="controls.fieldX">
+            <option value="male"> Male </option>
+            <option value="female"> Female </option>
+          </select>
+        </ng-container>
+  
+        <ng-container *ngIf="controls.linkId == 2.3">
+          <select [formControlName]="controls.fieldX">
+            <option value=""> Select Country </option>
+            <option value="india"> India </option>
+            <option value="US"> US </option>
+            <option value="Australia"> Australia </option>
+          </select>
+        </ng-container>
+  
+        <ng-container *ngIf="controls.linkId == 2.4">
+          <select [formControlName]="controls.fieldX">
+            <option value=""> Select Marital Status </option>
+            <option value="single"> Single </option>
+            <option value="Married"> MArried </option>
+          </select>
+        </ng-container>
+      </ng-container>
+      <hr>
+    </div>
+    </div>
+    </ng-container>
+    <br>
+    <br>
+  <div class="txt_center">
+    <button (click)="jsonFlag = true" class="button"> Submit </button>
+    <button (click)="pageForm.reset();jsonFlag = false" class="button" type="reset"> Reset </button>
+    <button (click)="jsonFlag = false" class="button"> Clear Json </button>
+  
+    <h3 *ngIf="jsonFlag" class="json-style">
+      {{pageForm.value | json}}
+    </h3>
+    </div>
+  
+  </form>

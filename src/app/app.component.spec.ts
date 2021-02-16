@@ -28,4 +28,10 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain('fhir-app-test app is running!');
   });
+
+  it('should call nder getQuestionJsonData Service method', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.ngOnInit();
+  });
 });
